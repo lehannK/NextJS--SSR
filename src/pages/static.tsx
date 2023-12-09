@@ -1,12 +1,24 @@
 // pages/static.tsx
 
-import { NextPage } from "next";
+import { NextPage, GetStaticProps } from "next";
 import { useEffect, useState, ReactNode } from "react";
 import { Col, Container, Row } from "reactstrap";
 
 type ApiResponse = {
   name: string;
   timestamp: Date;
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const staticData = await fetch(
+    `${process.env.NEXT_PUBLIC_APIURL}/api/hello`
+  ).then((res) => res.json());
+
+  return {
+    props: {
+      staticData,
+    },
+  };
 };
 
 const Static: NextPage = (props: {
