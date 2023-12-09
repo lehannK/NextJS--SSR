@@ -6,7 +6,7 @@ import { Col, Container, Row } from "reactstrap";
 
 type ApiResponse = {
   name: string;
-  timestamp: Date;
+  timeStamp: Date;
 };
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -18,6 +18,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       staticData,
     },
+    revalidate: 10,
   };
 };
 
@@ -43,12 +44,12 @@ const Static: NextPage = (props: {
       <Row>
         <Col>
           <h3>Gerado estaticamente durante o build:</h3>
-          <h2>{props.staticData?.timestamp.toString()}</h2>
+          <h2>{props.staticData?.timeStamp.toString()}</h2>
         </Col>
 
         <Col>
           <h3>Gerado no cliente: </h3>
-          <h2>{clientSideData?.timestamp.toString()}</h2>
+          <h2>{clientSideData?.timeStamp.toString()}</h2>
         </Col>
       </Row>
     </Container>
