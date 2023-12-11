@@ -7,6 +7,8 @@ type ApiResponse = {
   timeStamp: Date;
 };
 
+
+// É necessário que o getServerSideProps fique declarado do lado de fora do componente para permitir a pré renderização pelo SSR.
 export const getServerSideProps: GetServerSideProps = async () => {
   const serverSideData: ApiResponse = await fetch(
     `${process.env.NEXT_PUBLIC_APIURL}/api/hello`
